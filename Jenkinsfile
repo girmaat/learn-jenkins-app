@@ -36,6 +36,21 @@
                             '''
                         }
                     }
+                    stage("E2E Testing"){
+                        agent{
+                            docker{
+                                image 'mcr.microsoft.com/playwritght:v1.39.0-jammy' 
+                                reuseNode true
+                            }
+                        }
+                        steps{
+                            sh '''
+                                npm install -g serve
+                                server -s build
+                                npx playwright test
+                            '''
+                        }
+                    }
                 }
                 post{
                     always {
