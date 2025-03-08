@@ -25,7 +25,11 @@
                         steps{
                             sh '''
                                 echo 'Test stage'
-
+                                if (fileExists(build/index.html)) {
+                                    echo "File found."
+                                } else {
+                                    echo "File not found."
+                                }
                                 test -f build/index.html
                                 npm test
                             '''
