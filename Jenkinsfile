@@ -46,7 +46,7 @@
                         steps{
                             sh '''
                                 npm install -g serve
-                                server -s build
+                                serve -s build
                                 npx playwright test
                             '''
                         }
