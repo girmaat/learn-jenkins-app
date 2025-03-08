@@ -24,6 +24,14 @@
                     stage("Test"){
                         steps{
                             sh '''
+                                if (fileExists('index.html')) {
+                                    echo "File found."
+                                } else {
+                                    echo "File not found."
+                                }
+
+
+
                                 echo 'Test stage'
                                 test -f 'index.html'
                             '''
