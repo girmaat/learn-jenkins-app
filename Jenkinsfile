@@ -22,14 +22,15 @@
                         }
                     }
                     stage("Test"){
+                        agent{
+                            docker{
+                                image 'node:18-alpine' 
+                                reuseNode true
+                            }
+                        }
                         steps{
                             sh '''
-                                echo 'Test stage'
-                                if (fileExists(build/index.html)) {
-                                    echo "File found."
-                                } else {
-                                    echo "File not found."
-                                }
+                                echo 'Test stage'                               
                                 test -f build/index.html
                                 npm test
                             '''
